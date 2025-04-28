@@ -1,138 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'screens/login_screen.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: "AIzaSyBvYSlvsgwwJtMe8HzAqAeb_8F3HhNDQJM",
+          authDomain: "mockflix-922c0.firebaseapp.com",
+          projectId: "mockflix-922c0",
+          storageBucket: "mockflix-922c0.firebasestorage.app",
+          messagingSenderId: "551777383369",
+          appId: "1:551777383369:web:e39da14e2fd87c12846e18"));
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system;
-
-  bool get useLightMode {
-    switch (_themeMode) {
-      case ThemeMode.system:
-        return SchedulerBinding.instance.window.platformBrightness ==
-            Brightness.light;
-      case ThemeMode.light:
-        return true;
-      case ThemeMode.dark:
-        return false;
-    }
-  }
-
-  // This widget is the root of your application.
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-      ),
-      themeMode: _themeMode,
-      home: MyHomePage(
-        title: 'Material 3 Demo',
-        useLightMode: useLightMode,
-        handleBrightnessChange: (useLightMode) => setState(() {
-          _themeMode = useLightMode ? ThemeMode.light : ThemeMode.dark;
-        }),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    super.key,
-    required this.title,
-    required this.handleBrightnessChange,
-    required this.useLightMode,
-  });
-  final String title;
-  final bool useLightMode;
-  final void Function(bool useLightMode) handleBrightnessChange;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          _BrightnessButton(
-            handleBrightnessChange: widget.handleBrightnessChange,
+      title: 'Mockflix',
+      theme: new ThemeData(
+          scaffoldBackgroundColor: const Color(0xFF290133),
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(color: Color(0xFFe5e7eb)),
+            bodyMedium: TextStyle(color: Color(0xFFe5e7eb)),
+            bodySmall: TextStyle(color: Color(0xFFe5e7eb)),
+            displayLarge: TextStyle(color: Color(0xFFe5e7eb)),
+            displayMedium: TextStyle(color: Color(0xFFe5e7eb)),
+            displaySmall: TextStyle(color: Color(0xFFe5e7eb)),
+            titleLarge: TextStyle(color: Color(0xFFe5e7eb)),
+            titleMedium: TextStyle(color: Color(0xFFe5e7eb)),
+            titleSmall: TextStyle(color: Color(0xFFe5e7eb)),
+            headlineLarge: TextStyle(color: Color(0xFFe5e7eb)),
+            headlineMedium: TextStyle(color: Color(0xFFe5e7eb)),
+            headlineSmall: TextStyle(color: Color(0xFFe5e7eb)),
+            labelLarge: TextStyle(color: Color(0xFFe5e7eb)),
+            labelMedium: TextStyle(color: Color(0xFFe5e7eb)),
+            labelSmall: TextStyle(color: Color(0xFFe5e7eb)),
           ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton.large(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-class _BrightnessButton extends StatelessWidget {
-  const _BrightnessButton({
-    required this.handleBrightnessChange,
-    this.showTooltipBelow = true,
-  });
-
-  final Function handleBrightnessChange;
-  final bool showTooltipBelow;
-
-  @override
-  Widget build(BuildContext context) {
-    final isBright = Theme.of(context).brightness == Brightness.light;
-    return Tooltip(
-      preferBelow: showTooltipBelow,
-      message: 'Toggle brightness',
-      child: IconButton(
-        icon: isBright
-            ? const Icon(Icons.dark_mode_outlined)
-            : const Icon(Icons.light_mode_outlined),
-        onPressed: () => handleBrightnessChange(!isBright),
-      ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Color(0xFF290133),
+            iconTheme: IconThemeData(color: Color(0xFFe5e7eb)),
+            titleTextStyle: TextStyle(
+                color: Color(0xFFe5e7eb),
+                fontSize: 22.0,
+                fontWeight: FontWeight.normal),
+          )),
+      home: const LoginScreen(),
     );
   }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551777383369",
+    "project_id": "mockflix-922c0",
+    "storage_bucket": "mockflix-922c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551777383369:android:90ab26ed32840317846e18",
+        "android_client_info": {
+          "package_name": "com.example.mockflix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_M_h1_B7KcSFZT3VBDPJeX9KFLX7B__c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

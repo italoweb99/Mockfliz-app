@@ -11,10 +11,17 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http: ^0.13.5
+  carousel_slider: ^5.0.0
+  url_launcher: ^6.3.1
+  firebase_core: 	3.13.0
+  firebase_auth: 5.5.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+
 
 flutter:
 
